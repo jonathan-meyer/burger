@@ -4,9 +4,11 @@
   "description": "There is no cheese 🧀️ here ... or paradise 🌴️.",
   "main": "index.js",
   "dependencies": {
-    "dotenv": "^8.0.0",
+    "bootstrap": "^4.3.1",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
+    "jquery": "^3.4.1",
+    "jquery-validation": "^1.19.1",
     "mysql": "^2.17.1"
   },
   "devDependencies": {
@@ -15,7 +17,9 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "node ."
+    "build": "npm test",
+    "start": "node .",
+    "dev": "nodemon ."
   },
   "repository": {
     "type": "git",
