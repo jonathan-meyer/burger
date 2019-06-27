@@ -1,25 +1,2 @@
 {
-    "sqltools.connections": [
-        {
-            "connectionTimeout": 30,
-            "database": "qdrqmjmwkywv8wbv",
-            "dialect": "MySQL",
-            "name": "burger-stej",
-            "password": "q0jvasn0z4sotfae",
-            "port": 3306,
-            "server": "u0zbt18wwjva9e0v.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-            "username": "nf643ort0ncotkaf"
-        },
-        {
-            "askForPassword": false,
-            "connectionTimeout": 30,
-            "database": "burger",
-            "dialect": "MySQL",
-            "name": "burger-local",
-            "password": "abc123",
-            "port": 3306,
-            "server": "127.0.0.1",
-            "username": "jon"
-        }
-    ]
 }
