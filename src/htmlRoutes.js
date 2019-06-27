@@ -12,7 +12,7 @@ router
   )
   .use(
     "/",
-    express.static(path.resolve("app", "public"), {
+    express.static(path.resolve("public"), {
       index: "index.html"
     })
   );

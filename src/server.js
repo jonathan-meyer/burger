@@ -7,7 +7,9 @@ const server = {
       .use(express.json())
 
       .use((req, res, next) => {
-        console.log(`${req.method} ${req.url} ${req.headers["content-type"]}`);
+        console.log(
+          `${req.method} ${req.url} ${req.headers["content-type"] || ""}`
+        );
         next();
       })
 

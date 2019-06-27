@@ -16,10 +16,10 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
-    "test": "jest",
-    "build": "npm test",
+    "build": "jest",
     "start": "node .",
-    "dev": "nodemon ."
+    "test": "heroku local:run jest",
+    "dev": "heroku local:run nodemon ."
   },
   "repository": {
     "type": "git",
