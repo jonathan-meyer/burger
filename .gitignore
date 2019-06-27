@@ -65,3 +65,6 @@ unh
 
 # stupid SQL Tools files
 *Session.sql
+
+# vscode
+.vscode/settings.json

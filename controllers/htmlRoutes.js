@@ -10,11 +10,11 @@ router
     "/jquery-validation",
     express.static(path.resolve("node_modules", "jquery-validation"))
   )
-  .use(
-    "/",
-    express.static(path.resolve("public"), {
-      index: "index.html"
-    })
-  );
+
+  .get("/", (req, res) => {
+    res.render("index", { title: "Home" });
+  })
+
+  .use(express.static(path.resolve("public")));
 
 module.exports = router;

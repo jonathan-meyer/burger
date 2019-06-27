@@ -1,8 +1,12 @@
 const express = require("express");
+const exphbs = require("express-handlebars");
 
 const server = {
   start: port =>
     express()
+      .engine("handlebars", exphbs())
+      .set("view engine", "handlebars")
+
       .use(express.urlencoded({ extended: true }))
       .use(express.json())
 
@@ -13,8 +17,8 @@ const server = {
         next();
       })
 
-      .use("/api", require("./apiRoutes"))
-      .use("/", require("./htmlRoutes"))
+      .use("/api", require("../controllers/apiRoutes"))
+      .use("/", require("../controllers/htmlRoutes"))
 
       .listen(port, err => {
         console.log(`Listening to port ${port}`);
