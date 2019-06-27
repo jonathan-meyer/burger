@@ -14,7 +14,8 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node ."
   },
   "repository": {
     "type": "git",

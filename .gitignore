@@ -60,5 +60,8 @@ typings/
 # next.js build output
 .next
 
-#class files
+# class files
 unh
+
+# stupid SQL Tools files
+*Session.sql
