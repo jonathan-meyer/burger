@@ -12,7 +12,10 @@ router
   )
 
   .get("/", (req, res) => {
-    res.render("index", { title: "Home" });
+    res.render("index", {
+      toeat: [{ type: "regular" }],
+      eaten: [{ type: "not-regular" }]
+    });
   })
 
   .use(express.static(path.resolve("public")));
