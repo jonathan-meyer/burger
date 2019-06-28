@@ -12,10 +12,7 @@ router
   )
 
   .get("/", (req, res) => {
-    res.render("index", {
-      toeat: [{ type: "regular" }],
-      eaten: [{ type: "not-regular" }]
-    });
+    res.render("index", {});
   })
 
   .use(express.static(path.resolve("public")));

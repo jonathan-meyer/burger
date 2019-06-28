@@ -1,29 +1,51 @@
 const express = require("express");
-const router = express.Router();
 
-router
+const orm = require("../config/orm");
+const Burger = require("../models/Burger");
+
+const router = express
+  .Router()
+
   // get all burgers
-  .get("/burger", (req, res) => {
-    res.json([{}]);
+  .get("/", (req, res) => {
+    orm
+      .selectAll()
+      .then(data => res.json(data))
+      .catch(err => res.status(500).end());
   })
 
   // get a burger
-  .get("/burger/:id", (req, res) => {
-    res.json({ id: req.params.id });
+  .get("/:id", (req, res) => {
+    orm
+      .selectOne(req.params.id)
+      .then(data => (data ? res.json(data) : res.status(404).end()))
+      .catch(err => res.status(500).end());
   })
 
   // create a burger
-  .post("/burger", (req, res) => {
-    res.json({});
+  .post("/", (req, res) => {
+    const { name } = req.body;
+    orm
+      .insertOne(new Burger({ name }))
+      .then(data => res.json(data))
+      .catch(err => res.status(500).end());
   })
 
   // update a burger
-  .put("/burger/:id", (req, res) => {
-    res.json({ id: req.params.id });
+  .put("/:id", (req, res) => {
+    const {
+      params: { id },
+      body
+    } = req;
+
+    orm
+      .updateOne(id, new Burger(body))
+      .then(data => (data ? res.json(data) : res.status(404).end()))
+      .catch(err => res.status(500).end());
   })
 
   // delete a burger
-  .delete("/burgeer/:id", (req, res) => {
+  .delete("/:id", (req, res) => {
     res.json({ id: req.params.id });
   });
 

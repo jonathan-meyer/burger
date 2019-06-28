@@ -2,16 +2,20 @@ const orm = require("../orm");
 
 describe("orm", () => {
   it("selectAll()", () => {
-    expect(orm.selectAll()).toEqual(
+    return expect(orm.selectAll()).resolves.toEqual(
       expect.arrayContaining([expect.anything()])
     );
   });
 
   it("insertOne()", () => {
-    expect(orm.insertOne()).toEqual(expect.objectContaining({}));
+    return expect(orm.insertOne({ name: "fred" })).resolves.toEqual(
+      expect.objectContaining({})
+    );
   });
 
   it("updateOne()", () => {
-    expect(orm.updateOne()).toEqual(expect.objectContaining({}));
+    return expect(orm.updateOne(1, { devoured: true })).resolves.toEqual(
+      expect.objectContaining({})
+    );
   });
 });

@@ -1,4 +1,9 @@
-<div class="d-flex justify-content-between align-items-center">
-    <i>2019 &copy; Jonathan Meyer</i><a href="https://github.com/jonathan-meyer/burger" target="_blank"><img
-            class="img-thumbnail mx-1" src="/img/GitHub-Mark-32px.png"></a>
+<div class="d-flex flex-row align-items-center">
+    <div class=""><i>2019 &copy; Jonathan Meyer</i></div>
+    {{#burgerCount}}
+    <div class="mx-3">|</div>
+    <div>{{burgerCount}} burger{{#gtOne burgerCount}}s{{/gtOne}} served</div>
+    {{/burgerCount}}
+    <div class="ml-auto"><a href="https://github.com/jonathan-meyer/burger" target="_blank"><img
+                class="img-thumbnail mx-1" src="/img/GitHub-Mark-32px.png"></a></div>
 </div>

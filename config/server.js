@@ -1,10 +1,16 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 
+const handlebars = exphbs.create({
+  helpers: {
+    gtOne: (value, opts) => (value > 1 ? opts.fn() : undefined)
+  }
+});
+
 const server = {
   start: port =>
     express()
-      .engine("handlebars", exphbs())
+      .engine("handlebars", handlebars.engine)
       .set("view engine", "handlebars")
 
       .use(express.urlencoded({ extended: true }))
