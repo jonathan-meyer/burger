@@ -2,6 +2,9 @@ const conn = require("./connection");
 const Burger = require("../models/Burger");
 
 const orm = {
+  connect: cb => conn.connect(cb),
+  end: cb => conn.end(cb),
+
   selectAll: () =>
     new Promise((resolve, reject) => {
       conn.query("select * from `burgers`", (err, results, fields) => {

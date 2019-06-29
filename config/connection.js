@@ -5,4 +5,8 @@ connection.on("connect", () => {
   console.log("[Connected to DB]");
 });
 
+connection.on("end", () => {
+  console.log("[Disconnected from DB]");
+});
+
 module.exports = connection;
