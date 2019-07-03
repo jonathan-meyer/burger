@@ -1,6 +1,8 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 
+const orm = require("../config/orm");
+
 const handlebars = exphbs.create({
   helpers: {
     gtOne: (value, opts) => (value > 1 ? opts.fn() : undefined)
@@ -27,7 +29,15 @@ const server = {
       .use("/", require("../controllers/htmlRoutes"))
 
       .listen(port, err => {
-        console.log(`Listening to port ${port}`);
+        console.log(`[Listening to port ${port}]`);
+      })
+
+      .on("close", () => {
+        console.log(`[Stopped listening to port ${port}]`);
+
+        orm.end(() => {
+          console.log("[Disconnected from DB]");
+        });
       })
 };
 

@@ -5,15 +5,19 @@ const orm = {
   connect: cb => conn.connect(cb),
   end: cb => conn.end(cb),
 
-  selectAll: () =>
+  selectAll: devoured =>
     new Promise((resolve, reject) => {
-      conn.query("select * from `burgers`", (err, results, fields) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(results.map(i => new Burger(i)));
+      conn.query(
+        "select * from `burgers`" + (devoured === undefined ? "" : " where ?"),
+        { devoured: devoured === undefined ? undefined : devoured === true },
+        (err, results, fields) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(results.map(i => new Burger(i)));
+          }
         }
-      });
+      );
     }),
 
   selectOne: id =>

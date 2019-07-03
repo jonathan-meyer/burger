@@ -21,6 +21,7 @@
     "build": "jest",
     "start": "node .",
     "test": "heroku local:run jest",
+    "test:OH": "heroku local:run jest --detectOpenHandles",
     "dev": "heroku local:run nodemon ."
   },
   "repository": {
