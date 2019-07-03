@@ -1,11 +1,13 @@
 <div class="container">
-    <div class="input-group my-3">
-        <input type="text" class="form-control" placeholder="Add a Burger to the Menu"
-            aria-label="Add a Burger to the Menu" aria-describedby="add">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="add">Add</button>
+    <form>
+        <div class="input-group my-3">
+            <input type="text" class="form-control" placeholder="Add a Burger to the Menu"
+                aria-label="Add a Burger to the Menu" aria-describedby="add" name="type">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Add</button>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <div class="d-flex justify-content-around">
@@ -13,7 +15,7 @@
     <div class="list-group w-25" id="toeat">
         <div class="list-group-item text-center font-weight-bold">To Eat</div>
         {{#toeat}}
-        <button class="list-group-item list-group-item-action list-group-item-success">
+        <button class="list-group-item list-group-item-action list-group-item-success" title="click to eat me.">
             {{name}}</button>
         {{/toeat}}
     </div>
@@ -23,7 +25,7 @@
     <div class="list-group w-25" id="eaten">
         <div class="list-group-item text-center font-weight-bold">Eaten</div>
         {{#eaten}}
-        <button class="list-group-item list-group-item-action list-group-item-danger">
+        <button class="list-group-item list-group-item-action list-group-item-danger" title="click to trash me.">
             {{name}}</button>
         {{/eaten}}
     </div>

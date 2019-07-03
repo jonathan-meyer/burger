@@ -1,11 +1,18 @@
 $(function() {
   console.log("[** ready **]");
 
-  $("#add").on("click", function() {
-    console.log("add");
+  $("form").on("submit", function(e) {
+    e.preventDefault();
+
+    console.log(
+      "add:",
+      $(this)
+        .serializeArray()
+        .reduce((p, c) => Object.assign(p, { [c.name]: c.value.trim() }), {})
+    );
   });
 
-  $("#toeat").on("click", "a", function() {
+  $("#toeat").on("click", "button", function() {
     console.log(
       "eat:",
       $(this)
@@ -14,9 +21,9 @@ $(function() {
     );
   });
 
-  $("#eaten").on("click", "a", function() {
+  $("#eaten").on("click", "button", function() {
     console.log(
-      "eaten:",
+      "trash:",
       $(this)
         .text()
         .trim()
