@@ -86,7 +86,7 @@ const orm = {
   burgerCount: () =>
     new Promise((resolve, reject) => {
       conn.query(
-        "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'burger' AND TABLE_NAME = 'burgers'",
+        "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'burgers'",
         (err, results, fields) => {
           if (err) {
             reject(err);
