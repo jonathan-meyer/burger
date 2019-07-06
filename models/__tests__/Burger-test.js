@@ -8,7 +8,13 @@ describe("Burger", () => {
 
     it("with name of Fred", () => {
       expect(new Burger({ name: "fred" })).toEqual(
-        expect.objectContaining({ name: "fred" })
+        expect.objectContaining({ burger_name: "fred" })
+      );
+    });
+
+    it("with burger_name of Fred", () => {
+      expect(new Burger({ burger_name: "fred" })).toEqual(
+        expect.objectContaining({ burger_name: "fred" })
       );
     });
   });

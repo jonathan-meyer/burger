@@ -25,6 +25,7 @@ const router = express
   // create a burger
   .post("/", (req, res) => {
     const { name } = req.body;
+
     orm
       .insertOne(new Burger({ name }))
       .then(data => res.json(data))
@@ -38,15 +39,30 @@ const router = express
       body
     } = req;
 
-    orm
-      .updateOne(id, new Burger(body))
-      .then(data => (data ? res.json(data) : res.status(404).end()))
-      .catch(err => res.status(500).end());
+    orm.selectOne(id).then(burger => {
+      burger
+        ? orm
+            .updateOne(id, burger.update(body))
+            .then(data => res.json(data))
+            .catch(err => res.status(500).json(err))
+        : res.status(404).end();
+    });
   })
 
   // delete a burger
   .delete("/:id", (req, res) => {
-    res.json({ id: req.params.id });
+    const {
+      params: { id }
+    } = req;
+
+    orm.selectOne(id).then(burger => {
+      burger
+        ? orm
+            .deleteOne(id)
+            .then(data => res.json(data))
+            .catch(err => res.status(500).json(err))
+        : res.status(404).end();
+    });
   });
 
 module.exports = router;

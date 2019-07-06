@@ -2,7 +2,7 @@
     <form>
         <div class="input-group my-3">
             <input type="text" class="form-control" placeholder="Add a Burger to the Menu"
-                aria-label="Add a Burger to the Menu" aria-describedby="add" name="type">
+                aria-label="Add a Burger to the Menu" aria-describedby="add" name="name">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Add</button>
             </div>
@@ -14,19 +14,16 @@
 
     <div class="list-group w-25" id="toeat">
         <div class="list-group-item text-center font-weight-bold">To Eat</div>
-        {{#toeat}}
-        <button class="list-group-item list-group-item-action list-group-item-success" title="click to eat me.">
-            {{name}}</button>
-        {{/toeat}}
     </div>
 
     <img width="200" src="/img/1f354.svg">
 
     <div class="list-group w-25" id="eaten">
         <div class="list-group-item text-center font-weight-bold">Eaten</div>
-        {{#eaten}}
-        <button class="list-group-item list-group-item-action list-group-item-danger" title="click to trash me.">
-            {{name}}</button>
-        {{/eaten}}
     </div>
 </div>
+
+<script>
+    var toeat = {{{ json toeat }}};
+    var eaten = {{{ json eaten }}};
+</script>

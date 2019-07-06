@@ -5,7 +5,8 @@ const orm = require("../config/orm");
 
 const handlebars = exphbs.create({
   helpers: {
-    gtOne: (value, opts) => (value > 1 ? opts.fn() : undefined)
+    gtOne: (value, opts) => (value > 1 ? opts.fn() : undefined),
+    json: (value, opts) => JSON.stringify(value)
   }
 });
 

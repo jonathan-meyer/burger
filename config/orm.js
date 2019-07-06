@@ -23,7 +23,7 @@ const orm = {
   selectOne: id =>
     new Promise((resolve, reject) => {
       conn.query(
-        "select * from `burgers` where ?",
+        "SELECT * FROM `burgers` WHERE ?",
         { id },
         (err, results, fields) => {
           if (err) {
@@ -38,8 +38,8 @@ const orm = {
   insertOne: burger =>
     new Promise((resolve, reject) => {
       conn.query(
-        "insert into `burgers` set ?",
-        { burger_name: burger.name },
+        "INSERT INTO `burgers` SET ?",
+        burger,
         (err, results, fields) => {
           if (err) {
             reject(err);
@@ -55,12 +55,46 @@ const orm = {
 
   updateOne: (id, burger) =>
     new Promise((resolve, reject) => {
-      resolve(burger);
+      conn.query(
+        "UPDATE `burgers` SET ?  WHERE ? LIMIT 1",
+        [burger, { id }],
+        (err, results, fields) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(results);
+          }
+        }
+      );
     }),
 
   deleteOne: id =>
     new Promise((resolve, reject) => {
-      resolve();
+      conn.query(
+        "DELETE FROM `burgers` WHERE ? LIMIT 1",
+        { id },
+        (err, results, fields) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(results);
+          }
+        }
+      );
+    }),
+
+  burgerCount: () =>
+    new Promise((resolve, reject) => {
+      conn.query(
+        "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'burger' AND TABLE_NAME = 'burgers'",
+        (err, results, fields) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(results);
+          }
+        }
+      );
     })
 };
 

@@ -14,10 +14,12 @@ router
   )
 
   .get("/", (req, res) => {
-    orm.selectAll().then(data => {
+    Promise.all([orm.selectAll(), orm.burgerCount()]).then(data => {
+      console.log(data);
       res.render("index", {
-        toeat: data.filter(i => !i.devoured),
-        eaten: data.filter(i => i.devoured)
+        toeat: data[0].filter(i => !i.devoured),
+        eaten: data[0].filter(i => i.devoured),
+        burgerCount: data[1].pop().AUTO_INCREMENT
       });
     });
   })

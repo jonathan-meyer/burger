@@ -55,12 +55,23 @@ describe("orm", () => {
   });
 
   it("updateOne()", () => {
+    const result = {
+      affectedRows: 1,
+      changedRows: 1,
+      fieldCount: 0,
+      insertId: 0,
+      message: "(Rows matched: 1  Changed: 1  Warnings: 0",
+      protocol41: true,
+      serverStatus: 2,
+      warningCount: 0
+    };
+
     conn.query = jest.fn((query, data, cb) => {
-      cb(null, [data]);
+      cb(null, result);
     });
 
     return expect(orm.updateOne(1, { devoured: true })).resolves.toEqual(
-      new Burger({ devoured: true })
+      result
     );
   });
 });
